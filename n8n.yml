@@ -1,0 +1,109 @@
+version: "3.8"
+services:
+  n8n_editor:
+    image: n8nio/n8n:1.80.5
+    ports:
+      - "5678:5678"      # Expondo a porta do editor
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - tmp_data:/home/n8n/.tmp
+    networks:
+      - app_network
+    environment:
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_DATABASE: n8n_fila
+      DB_POSTGRESDB_USER: postgres
+      DB_POSTGRESDB_PASSWORD: minha_senha
+      N8N_ENCRYPTION_KEY: Y8Dmy5FhuRIDGIrs
+      N8N_HOST: 192.168.1.77
+      N8N_EDITOR_BASE_URL: http://192.168.1.74:5678/
+      N8N_PROTOCOL: http
+      NODE_ENV: production
+      WEBHOOK_URL: http://192.168.1.74:5678/
+      EXECUTIONS_MODE: queue
+      QUEUE_BULL_REDIS_HOST: redis
+      QUEUE_BULL_REDIS_PORT: 6379
+      QUEUE_BULL_REDIS_DB: 2
+      NODE_FUNCTION_ALLOW_EXTERNAL: moment,lodash,moment-with-locales
+      EXECUTIONS_DATA_PRUNE: 'true'
+      EXECUTIONS_DATA_MAX_AGE: 336
+      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: 'true'
+      N8N_SECURE_COOKIE: "false"
+
+      restart: always 
+
+  n8n_webhook:
+    image: n8nio/n8n:1.80.5
+    command: webhook
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - app_network
+    
+    environment:
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_DATABASE: n8n_fila
+      DB_POSTGRESDB_USER: postgres
+      DB_POSTGRESDB_PASSWORD: minha_senha
+      N8N_ENCRYPTION_KEY: Y8Dmy5FhuRIDGIrs
+      N8N_HOST: 192.168.1.77
+      N8N_EDITOR_BASE_URL: http://192.168.1.74:5678/
+      N8N_PROTOCOL: http
+      NODE_ENV: production
+      WEBHOOK_URL: http://192.168.1.74:5678/
+      EXECUTIONS_MODE: queue
+      QUEUE_BULL_REDIS_HOST: redis
+      QUEUE_BULL_REDIS_PORT: 6379
+      QUEUE_BULL_REDIS_DB: 2
+      NODE_FUNCTION_ALLOW_EXTERNAL: moment,lodash,moment-with-locales
+      EXECUTIONS_DATA_PRUNE: 'true'
+      EXECUTIONS_DATA_MAX_AGE: 336
+      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: 'true'
+      N8N_SECURE_COOKIE: "false"
+
+      restart: always 
+
+
+  n8n_worker:
+    image: n8nio/n8n:1.80.5
+    command: worker --concurrency=5
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - app_network
+    environment:
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_DATABASE: n8n_fila
+      DB_POSTGRESDB_USER: postgres
+      DB_POSTGRESDB_PASSWORD: minha_senha
+      N8N_ENCRYPTION_KEY: Y8Dmy5FhuRIDGIrs
+      N8N_HOST: 192.168.1.77
+      N8N_EDITOR_BASE_URL: http://192.168.1.74:5678/
+      N8N_PROTOCOL: https
+      NODE_ENV: production
+      WEBHOOK_URL: http://192.168.1.74:5678/
+      EXECUTIONS_MODE: queue
+      QUEUE_BULL_REDIS_HOST: redis
+      QUEUE_BULL_REDIS_PORT: 6379
+      QUEUE_BULL_REDIS_DB: 2
+      NODE_FUNCTION_ALLOW_EXTERNAL: moment,lodash,moment-with-locales
+      EXECUTIONS_DATA_PRUNE: 'true'
+      EXECUTIONS_DATA_MAX_AGE: 336
+      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: 'true'
+      N8N_SECURE_COOKIE: "false"
+
+      restart: always 
+
+volumes:
+  n8n_data:
+  tmp_data:
+
+networks:
+  app_network:
+    external: true

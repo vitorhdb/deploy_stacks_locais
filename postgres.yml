@@ -1,0 +1,40 @@
+##para criar rede
+#docker network create app_network
+
+
+##procedimento para instalar o pgvector
+##apt-get update
+#apt-get install -y git build-essential postgresql-server-dev-15 curl
+#git clone https://github.com/pgvector/pgvector.git /usr/src/pgvector
+#cd /usr/src/pgvector
+#make && make install
+#acessar o psql e ativar a extensao
+#CREATE EXTENSION IF NOT EXISTS vector;
+
+
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_aula
+    environment:
+        POSTGRES_PASSWORD: minha_senha
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - pg_extensions:/usr/share/postgresql/15/extension
+      - pg_libs:/usr/lib/postgresql/15/lib
+    networks:
+      - app_network
+    ports:
+      - "5432:5432"
+    restart: always
+
+volumes:
+  db_data:
+  pg_extensions:
+  pg_libs:
+
+networks:
+  app_network:
+    external: true

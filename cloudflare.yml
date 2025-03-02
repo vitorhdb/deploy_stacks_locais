@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: always
+    command: tunnel --no-autoupdate run --token eyJhIjoiODI4NzkzMDQ2YzYwNzQzZjAyNDEyZDFlM2M5ZjM3ZmIiLCJ0IjoiMTcwMzFjYzYtZjU5Mi00ZDQ0LWIzZGItMWZlNTE0MDgzYTNiIiwicyI6Ik1qTXpaREpqTkdJdFpUZGlaaTAwWWpjMExUaGhNVGN0TW1VM00yVTBOMk16WkRZeCJ9
+
+
+networks:
+  app_network:
+    external: true
+
+
+
+   
