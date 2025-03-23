@@ -1,16 +1,17 @@
 #command: bundle exec rails db:chatwoot_prepare
-version: "3.8"
+
 
 services:
   chatwoot-rails:
-    image: chatwoot/chatwoot:v4.0.0
+    image: chatwoot/chatwoot:v4.0.3
+
     environment:
       RAILS_ENV: "production"
       NODE_ENV: "production"
       INSTALLATION_ENV: "docker"
 
       SECRET_KEY_BASE: "chave_unica"
-      FRONTEND_URL: "http://192.168.1.77:3000"
+      FRONTEND_URL: "http://192.168.1.74:3000"
       ENABLE_ACCOUNT_SIGNUP: "false"
 
       # Banco e Redis (caso estejam em outro compose ou serviços)
@@ -19,16 +20,17 @@ services:
       POSTGRES_PASSWORD: "minha_senha"
       POSTGRES_DATABASE: "chatwoot"
       REDIS_URL: "redis://redis:6379"
-      ACTIVE_STORAGE_SERVICE: local
+      #ACTIVE_STORAGE_SERVICE: local
 
       # Configurações S3/MinIO
-      #ACTIVE_STORAGE_SERVICE: "s3_compatible"
-      #STORAGE_BUCKET_NAME: "chatwoot"
-      #STORAGE_ACCESS_KEY_ID: ""
-      #STORAGE_SECRET_ACCESS_KEY: ""
-      #STORAGE_REGION: "us-east-1"
-      #STORAGE_ENDPOINT: ""
-      #STORAGE_FORCE_PATH_STYLE: "true"
+      ACTIVE_STORAGE_SERVICE: "s3_compatible"
+      STORAGE_BUCKET_NAME: "chatwoot"
+      STORAGE_ACCESS_KEY_ID: "0XggPPlXeMJVsqoTblIz"
+      STORAGE_SECRET_ACCESS_KEY: "cO8lTX9wKcn3NBGdp2itSoV7skeqnizQsbKIRgfZ"
+      STORAGE_REGION: "us-east-1"
+      STORAGE_ENDPOINT: "http://192.168.1.74:9002"
+      STORAGE_FORCE_PATH_STYLE: "true"
+      AWS_REGION: "us-east-1"
 
 
       # Exemplo de chave OpenAI (opcional)
@@ -50,14 +52,15 @@ services:
     command: ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
 
   chatwoot-sidekiq:
-    image: chatwoot/chatwoot:v4.0.0
+    image: chatwoot/chatwoot:v4.0.3
+
     environment:
       RAILS_ENV: "production"
       NODE_ENV: "production"
       INSTALLATION_ENV: "docker"
 
       SECRET_KEY_BASE: "chave_unica"
-      FRONTEND_URL: "http://192.168.1.77:3000"
+      FRONTEND_URL: "http://192.168.1.74:3000"
       ENABLE_ACCOUNT_SIGNUP: "false"
 
       POSTGRES_HOST: "postgres"
@@ -65,16 +68,16 @@ services:
       POSTGRES_PASSWORD: "minha_senha"
       POSTGRES_DATABASE: "chatwoot"
       REDIS_URL: "redis://redis:6379"
-      ACTIVE_STORAGE_SERVICE: local
+      #ACTIVE_STORAGE_SERVICE: local
       #Mesmas configs de MinIO/S3
-      #ACTIVE_STORAGE_SERVICE: "s3_compatible"
-      #STORAGE_BUCKET_NAME: "chatwoot"
-      #STORAGE_ACCESS_KEY_ID: "aeqQmYw9kLU21OpEsog4"
-      #STORAGE_SECRET_ACCESS_KEY: "GwHQD8OQ7tOeYXoVEtlL8PdBtl7s022JGUqZ0DpU"
-      #STORAGE_REGION: "us-east-1"
-      #STORAGE_ENDPOINT: "http://192.168.1.77:9002"
-      #STORAGE_FORCE_PATH_STYLE: "true"
-      #AWS_REGION: "us-east-1"
+      ACTIVE_STORAGE_SERVICE: "s3_compatible"
+      STORAGE_BUCKET_NAME: "chatwoot"
+      STORAGE_ACCESS_KEY_ID: "0XggPPlXeMJVsqoTblIz"
+      STORAGE_SECRET_ACCESS_KEY: "cO8lTX9wKcn3NBGdp2itSoV7skeqnizQsbKIRgfZ"
+      STORAGE_REGION: "us-east-1"
+      STORAGE_ENDPOINT: "http://192.168.1.74:9002"
+      STORAGE_FORCE_PATH_STYLE: "true"
+      AWS_REGION: "us-east-1"
 
       #OPENAI_COMPLETIONS_ENABLED: "true"
       #OPENAI_API_KEY: ""

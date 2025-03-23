@@ -10,10 +10,6 @@
 #make && make install
 #acessar o psql e ativar a extensao
 #CREATE EXTENSION IF NOT EXISTS vector;
-
-
-version: '3.8'
-
 services:
   postgres:
     image: postgres:15

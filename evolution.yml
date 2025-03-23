@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   evolution_v2:
     image: atendai/evolution-api:v2.2.3
@@ -11,7 +9,7 @@ services:
     networks:
       - app_network
     environment:
-      - SERVER_URL=http://192.168.1.74:8080
+      - SERVER_URL=http://172.20.0.2:8080
       - DEL_INSTANCE=false
       - DEL_TEMP_INSTANCES=false
       - PROVIDER_ENABLED=false
@@ -103,7 +101,7 @@ services:
       - CHATWOOT_IMPORT_PLACEHOLDER_MEDIA_MESSAGE=true
       - CACHE_REDIS_ENABLED=true
       - CACHE_REDIS_URI=redis://redis:6379
-      - CACHE_REDIS_PREFIX_KEY=evolution_v2
+      - CACHE_REDIS_PREFIX_KEY=evolution
       - CACHE_REDIS_SAVE_INSTANCES=false
       - CACHE_LOCAL_ENABLED=false
       - S3_ENABLED=true
