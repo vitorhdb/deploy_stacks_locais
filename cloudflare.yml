@@ -2,13 +2,9 @@ services:
   cloudflared:
     image: cloudflare/cloudflared:latest
     restart: always
-    command: tunnel --no-autoupdate run --token eyJhIjoiODI4NzkzMDQ2YzYwNzQzZjAyNDEyZDFlM2M5ZjM3ZmIiLCJ0IjoiMTcwMzFjYzYtZjU5Mi00ZDQ0LWIzZGItMWZlNTE0MDgzYTNiIiwicyI6Ik1qTXpaREpqTkdJdFpUZGlaaTAwWWpjMExUaGhNVGN0TW1VM00yVTBOMk16WkRZeCJ9
-
+    command: tunnel --no-autoupdate run --token seu-toke
 
 networks:
   app_network:
     external: true
 
-
-
-   
