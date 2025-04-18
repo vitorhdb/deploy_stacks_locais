@@ -6,6 +6,19 @@ services:
     image: chatwoot/chatwoot:v4.0.3
 
     environment:
+
+      #configuracao SMTP
+      MAILER_SENDER_EMAIL: TITULO ASSUNTO EMAIL <andersonlemes50@gmail.com>
+      SMTP_DOMAIN: gmail.com
+      SMTP_ADDRESS: smtp.gmail.com
+      SMTP_PORT: "587"
+      SMTP_USERNAME: seuemail@gmail.com
+      SMTP_PASSWORD: sua_senha
+      SMTP_AUTHENTICATION: login
+      SMTP_ENABLE_STARTTLS_AUTO: "true"
+      SMTP_OPENSSL_VERIFY_MODE: "peer"
+      MAILER_INBOUND_EMAIL_DOMAIN: seudominio.com
+      
       RAILS_ENV: "production"
       NODE_ENV: "production"
       INSTALLATION_ENV: "docker"
@@ -55,6 +68,18 @@ services:
     image: chatwoot/chatwoot:v4.0.3
 
     environment:
+      #configuracao SMTP
+      MAILER_SENDER_EMAIL: TITULO ASSUNTO EMAIL <andersonlemes50@gmail.com>
+      SMTP_DOMAIN: gmail.com
+      SMTP_ADDRESS: smtp.gmail.com
+      SMTP_PORT: "587"
+      SMTP_USERNAME: seuemail@gmail.com
+      SMTP_PASSWORD: sua_senha
+      SMTP_AUTHENTICATION: login
+      SMTP_ENABLE_STARTTLS_AUTO: "true"
+      SMTP_OPENSSL_VERIFY_MODE: "peer"
+      MAILER_INBOUND_EMAIL_DOMAIN: seudominio.com
+      
       RAILS_ENV: "production"
       NODE_ENV: "production"
       INSTALLATION_ENV: "docker"
