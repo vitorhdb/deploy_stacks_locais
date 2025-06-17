@@ -13,9 +13,9 @@
 services:
   postgres:
     image: postgres:15
-    container_name: postgres_aula
+    container_name: postgres
     environment:
-        POSTGRES_PASSWORD: minha_senha
+        POSTGRES_PASSWORD: 302415
     volumes:
       - db_data:/var/lib/postgresql/data
       - pg_extensions:/usr/share/postgresql/15/extension
