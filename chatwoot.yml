@@ -8,12 +8,12 @@ services:
     environment:
 
       #configuracao SMTP
-      MAILER_SENDER_EMAIL: TITULO ASSUNTO EMAIL <andersonlemes50@gmail.com>
+      MAILER_SENDER_EMAIL: TITULO ASSUNTO EMAIL <vtr.duarte01@gmail.com>
       SMTP_DOMAIN: gmail.com
       SMTP_ADDRESS: smtp.gmail.com
       SMTP_PORT: "587"
-      SMTP_USERNAME: seuemail@gmail.com
-      SMTP_PASSWORD: sua_senha
+      SMTP_USERNAME: vtr.duarte01@gmail.com
+      SMTP_PASSWORD: Leona@302415!
       SMTP_AUTHENTICATION: login
       SMTP_ENABLE_STARTTLS_AUTO: "true"
       SMTP_OPENSSL_VERIFY_MODE: "peer"
@@ -24,7 +24,7 @@ services:
       INSTALLATION_ENV: "docker"
 
       SECRET_KEY_BASE: "chave_unica"
-      FRONTEND_URL: "http://192.168.1.74:3000"
+      FRONTEND_URL: "http://192.168.15.8:3000"
       ENABLE_ACCOUNT_SIGNUP: "false"
 
       # Banco e Redis (caso estejam em outro compose ou serviços)
@@ -85,7 +85,7 @@ services:
       INSTALLATION_ENV: "docker"
 
       SECRET_KEY_BASE: "chave_unica"
-      FRONTEND_URL: "http://192.168.1.74:3000"
+      FRONTEND_URL: "http://192.168.15.8:3000"
       ENABLE_ACCOUNT_SIGNUP: "false"
 
       POSTGRES_HOST: "postgres"
